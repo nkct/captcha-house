@@ -16,14 +16,29 @@
     let canvas: HTMLCanvasElement;
     let input: HTMLInputElement;
 
+    function random_transform() {
+        return {
+            a: 1,
+            b: (Math.random() * 0.5) - 0.25,
+            c: (Math.random() * 2) - 1,
+            d: 1,
+            e: 0,
+            f: 0,
+        }
+    }
+
     onMount(() => {
         const ctx = canvas.getContext('2d');
         if (ctx != null) {
-            ctx.font = "50px arial bold"
+            ctx.font = "30px arial bold";
+            let {a, b, c, d, e, f} = random_transform();
+            ctx.transform(a, b, c, d, e, f);
+            ctx.filter = `blur(${Math.random() * 2.5 - 1}px) contrast(${Math.random() * 100}%)`
             ctx.fillText(
                 captcha_string, 
                 (canvas_width / 2) - (ctx.measureText(captcha_string).width / 2), 
-                canvas_height / 2 + 25);
+                canvas_height / 2 + 15);
+            
         }
     })
 
