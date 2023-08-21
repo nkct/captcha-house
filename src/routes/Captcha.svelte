@@ -5,7 +5,7 @@
     let captcha_string = "";
 
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const canvas_width = 200;
+    const canvas_width = 250;
     const canvas_height = 100;
 
     for (let i = 0; i < length; i++) {
@@ -19,8 +19,11 @@
     onMount(() => {
         const ctx = canvas.getContext('2d');
         if (ctx != null) {
-            ctx.font = "30px arial"
-            ctx.fillText(captcha_string, canvas_width/2 - 30, canvas_height/2 + 15);
+            ctx.font = "50px arial bold"
+            ctx.fillText(
+                captcha_string, 
+                (canvas_width / 2) - (ctx.measureText(captcha_string).width / 2), 
+                canvas_height / 2 + 25);
         }
     })
 
