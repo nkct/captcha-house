@@ -6,6 +6,17 @@
 
 <h1>CAPTCHA</h1>
 <button on:click={() => { captchas = [...captchas, 5] }}>Get CAPTCHA</button>
-{#each captchas as length}
+<div class="captcha_container">
+    {#each captchas as length}
       <Captcha {length} />
-{/each}
+    {/each}
+</div>
+
+<style lang="scss">
+    .captcha_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+</style>
