@@ -33,12 +33,20 @@
             ctx.font = "30px arial bold";
             let {a, b, c, d, e, f} = random_transform();
             ctx.transform(a, b, c, d, e, f);
-            ctx.filter = `blur(${Math.random() * 2.5 - 1}px) contrast(${Math.random() * 100}%)`
+            ctx.filter = `blur(${Math.random() * 2 - 1}px)`
             ctx.fillText(
                 captcha_string, 
                 (canvas_width / 2) - (ctx.measureText(captcha_string).width / 2), 
                 canvas_height / 2 + 15);
-            
+
+            let src = ctx.getImageData(0, 0, canvas_width, canvas_height);
+            let dst = new ImageData(src.data, src.width, src.height);
+            let mangled = ctx.createImageData(canvas_width, canvas_height);
+            for (let i = 0; i < dst.data.length; i++) {
+                const px = dst.data[i];
+                mangled.data[i] = px + (Math.random() * 200)
+            }
+            ctx.putImageData(mangled, 0, 0);
         }
     })
 
