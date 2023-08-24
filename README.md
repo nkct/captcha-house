@@ -1,38 +1,35 @@
-# create-svelte
+# captcha-house
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Have you ever wanted to just solve captchas?  
+Do you look at them and a dark desire within you grows?  
+But those damnn websites only let you solve one or two!  
+And then you have to refresh the page or even clear browser data to do them again!  
 
-## Creating a project
+Well... that used to be me.  
+But I couldn't take it anymore.  
+And I took matters into my own hands.  
 
-If you're seeing this, you've probably already done this step. Congrats!
+I present to you:  
+**CAPTCHA House!**  
+Where you can endlessly solve captchas for however long you please!  
+You could spend your entire life in here.  
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+At least in concept, for now it remains grossly unfinished.  
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+All of the CAPTCHA service providers, that I have seen, don't quite offer what I'm looking for. Requiring API keys and accounts, all while harvesting your data and limiting access rates.  
+So I have decided to build my own CAPTCHAs. They are unsecure and completely unusable for any actuall bot prevention needs.  
+This is meant purely as a proggraming challange with a flair of humour.  
 
-## Developing
+this goes without saying but, **Do not attempt to use this to secure your website.**  
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Usage
+This will one day be hosted as a website, but untill that day, you have to build it by yourself.
 
-```bash
-npm run dev
+* Have [Node.js](https://nodejs.dev/en/learn/how-to-install-nodejs/) installed.
+* [Clone the repository using git](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository), or download it manually
+* Navigate to project folder
+* run `npm run dev -- --open`
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## Contributions:
+All contributions, issues, and messages are welcome! If you aren't sure about something or have any questions please reach out to me.
