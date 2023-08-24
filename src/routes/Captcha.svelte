@@ -27,6 +27,35 @@
         }
     }
 
+    function mangle_imagedata(ctx: CanvasRenderingContext2D, src:ImageData): ImageData {
+        let dst = new ImageData(src.data, src.width, src.height);
+        let mangled = ctx.createImageData(canvas_width, canvas_height);
+        for (let i = 0; i < dst.data.length; i++) {
+            const px = dst.data[i];
+            mangled.data[i] = px + (Math.random() * 200)
+        }
+        return mangled
+    }
+
+    function add_artifacts(ctx: CanvasRenderingContext2D, src:ImageData): ImageData {
+        let dst = new ImageData(src.data, src.width, src.height);
+        let x = 0;
+        while (x < 25) {
+            let step = Math.floor(Math.random() * dst.width * 4);
+            let row = 0;
+            while (row <= src.height) {
+                let n = step + (src.width * row * 4) - 1
+                dst.data[n] = 255
+                dst.data[n - 4] = 255
+                
+                row += 1;
+            }
+            x += 1;
+        }
+        
+        return dst
+    }
+
     onMount(() => {
         const ctx = canvas.getContext('2d');
         if (ctx != null) {
@@ -40,17 +69,11 @@
                 canvas_height / 2 + 15);
 
             let src = ctx.getImageData(0, 0, canvas_width, canvas_height);
-            let dst = new ImageData(src.data, src.width, src.height);
-            let mangled = ctx.createImageData(canvas_width, canvas_height);
-            for (let i = 0; i < dst.data.length; i++) {
-                const px = dst.data[i];
-                mangled.data[i] = px + (Math.random() * 200)
-            }
-            ctx.putImageData(mangled, 0, 0);
+            src = mangle_imagedata(ctx, src);
+            src = add_artifacts(ctx, src);
+            ctx.putImageData(src, 0, 0);
         }
     })
-
-    console.log(captcha_string);
 </script>
 
 <div class="captcha" bind:this={captcha}>
