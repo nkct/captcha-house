@@ -2,6 +2,9 @@
 	import { onMount } from "svelte";
     
     export let length = 5;
+    export let with_noise = true;
+    export let with_bars = true;
+
     let captcha_string = "";
 
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -27,7 +30,7 @@
         }
     }
 
-    function mangle_imagedata(ctx: CanvasRenderingContext2D, src:ImageData): ImageData {
+    function add_noise(ctx: CanvasRenderingContext2D, src:ImageData): ImageData {
         let dst = new ImageData(src.data, src.width, src.height);
         let mangled = ctx.createImageData(canvas_width, canvas_height);
         for (let i = 0; i < dst.data.length; i++) {
@@ -37,7 +40,7 @@
         return mangled
     }
 
-    function add_artifacts(ctx: CanvasRenderingContext2D, src:ImageData): ImageData {
+    function add_bars(ctx: CanvasRenderingContext2D, src:ImageData): ImageData {
         let dst = new ImageData(src.data, src.width, src.height);
         let x = 0;
         while (x < 25) {
@@ -69,8 +72,12 @@
                 canvas_height / 2 + 15);
 
             let src = ctx.getImageData(0, 0, canvas_width, canvas_height);
-            src = mangle_imagedata(ctx, src);
-            src = add_artifacts(ctx, src);
+            if (with_noise) {
+                src = add_noise(ctx, src);
+            }
+            if (with_bars) {
+                src = add_bars(ctx, src);
+            }
             ctx.putImageData(src, 0, 0);
         }
     })
