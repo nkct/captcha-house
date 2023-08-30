@@ -83,7 +83,7 @@
     })
 </script>
 
-<div class="captcha" bind:this={captcha}>
+<div class="text-captcha" bind:this={captcha}>
     <canvas bind:this={canvas} width={canvas_width} height={canvas_height}></canvas>
     <form>
         <input type="text" placeholder="Input the above text here..." bind:this={input} />
@@ -105,7 +105,7 @@
 </div>
 
 <style lang="scss">
-    .captcha {
+    .text-captcha {
         border-radius: 10px;
         border: 5px lightgray solid;
         margin: 7px 0;
